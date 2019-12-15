@@ -25,6 +25,12 @@ module.exports = {
             },
             {
                 plugin:'vision'
+            },
+            {
+                plugin: require('./api/user/userapi'),
+                routes: {
+                    prefix:'/user'
+                }
             }
         ]
     }

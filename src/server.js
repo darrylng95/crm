@@ -5,6 +5,18 @@ const Glue = require('glue');
 
 const manifest = require('./manifest');
 
+const Mongoose = require('mongoose');
+
+const keys = require('./config/default');
+//require('./database/models/User');
+
+Mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+
+Mongoose.connection.on('error', err => {
+  console.error(`Mongoose connection error: ${err}`);
+  process.exit(1);
+});
+
 const options = {
   relativeTo: __dirname
 };
