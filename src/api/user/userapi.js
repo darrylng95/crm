@@ -1,10 +1,14 @@
-const Mongoose = require('mongoose');
+//const Mongoose = require('mongoose');
 
 const Joi = require('joi');
 
 const User = require('../../database/models/User');
+
+// Schema
 const PersonModel = User.Person;
 const ContactModel = User.Contact;
+
+// Exporting user api routes
 exports.register = (server, options) => {
   server.route({
     method: 'POST',
@@ -28,6 +32,10 @@ exports.register = (server, options) => {
       try {
         var person = new PersonModel(request.payload);
         var result = await person.save();
+        // if(person.firstname === 'darryl') {
+        // var result = await person.save();}else{
+        //   result = "not darryl";
+        // } can perform certain logic here
         return h.response(result);
       } catch (error) {
         return h.response(error).code(500);
