@@ -10,6 +10,7 @@ const ContactModel = User.Contact;
 
 // Exporting user api routes
 exports.register = (server, options) => {
+  //route 1
   server.route({
     method: 'POST',
     path: '/person',
@@ -21,7 +22,7 @@ exports.register = (server, options) => {
             .min(3)
             .required(),
           lastname: Joi.string().required(),
-          role: Joi.required()
+          role: Joi.string().required()
         },
         failAction: (request, h, error) => {
           return error.isJoi
@@ -45,6 +46,7 @@ exports.register = (server, options) => {
     }
   });
 
+  //route 2
   server.route({
     method: 'GET',
     path: '/people',
@@ -58,6 +60,7 @@ exports.register = (server, options) => {
     }
   });
 
+  //route 3
   server.route({
     method: 'POST',
     path: '/contact',
@@ -65,7 +68,9 @@ exports.register = (server, options) => {
       validate: {
         payload: {
           userid: Joi.required(),
-          contact: Joi.number().integer().required()
+          contact: Joi.number()
+            .integer()
+            .required()
         },
         failAction: (request, h, error) => {
           return error.isJoi
@@ -84,10 +89,8 @@ exports.register = (server, options) => {
       }
     }
   });
-
 };
 
 exports.pkg = {
-    name: 'userapis'
+  name: 'userapis'
 };
-
