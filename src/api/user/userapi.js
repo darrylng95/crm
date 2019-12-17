@@ -14,12 +14,14 @@ exports.register = (server, options) => {
     method: 'POST',
     path: '/person',
     options: {
+      tags: ['api'],
       validate: {
         payload: {
           firstname: Joi.string()
             .min(3)
             .required(),
-          lastname: Joi.string().required()
+          lastname: Joi.string().required(),
+          role: Joi.required()
         },
         failAction: (request, h, error) => {
           return error.isJoi
