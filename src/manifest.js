@@ -6,14 +6,15 @@ module.exports = {
     state: {
       strictHeader: false
     },
-    routes: {
-      cors:{
-        origin:['http://localhost:3000/']
-      }
-    }
   },
   register: {
     plugins: [
+      {
+        plugin: require('hapi-cors'),
+        options: {
+          origins: ['http://localhost:3000']
+        }
+      },
       {
         plugin: require('hapi-swagger'),
         options: {
