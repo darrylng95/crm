@@ -15,6 +15,7 @@ const initialState = {
 };
 
 const user = (state = initialState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case actionTypes.GET_USERS:
       return {
@@ -25,6 +26,7 @@ const user = (state = initialState, action) => {
 
     //not sure if this works
     case actionTypes.GET_USERS_TEST:
+      console.log("axios called");
       Axios.get('http://localhost:8000/user/people', {
         withCredentials: false
       })
@@ -70,6 +72,7 @@ const user = (state = initialState, action) => {
             ...state,
         }
     default:
+        console.log("No such action type");
         break;
   }
   return state;

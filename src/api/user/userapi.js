@@ -50,6 +50,9 @@ exports.register = (server, options) => {
   server.route({
     method: 'GET',
     path: '/people',
+    options: {
+      cors:true
+    },
     handler: async (request, h) => {
       try {
         var people = await PersonModel.find().exec();

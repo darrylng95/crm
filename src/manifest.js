@@ -5,6 +5,11 @@ module.exports = {
     port: 8000,
     state: {
       strictHeader: false
+    },
+    routes: {
+      cors:{
+        origin:['http://localhost:3000/']
+      }
     }
   },
   register: {
