@@ -1,6 +1,7 @@
 // user actions
 import * as actionTypes from './actionTypes';
 import Axios from 'axios';
+import user from '../reducers/user';
 
 const getUsers = users => {
   return {
@@ -31,11 +32,6 @@ const getUsersFailed = () => {
   };
 };
 
-export const getUsers = () => {
-  return {
-    type: actionTypes.GET_USERS_TEST //call reducer to do the action
-  };
-};
 
 export const addUser = (firstname, lastname, role) => {
   return {
