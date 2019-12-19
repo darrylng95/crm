@@ -10,7 +10,7 @@ const Mongoose = require('mongoose');
 const keys = require('./config/default');
 //require('./database/models/User');
 
-Mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+Mongoose.connect(keys.mongoURI, { useNewUrlParser: true,useUnifiedTopology: true });
 
 Mongoose.connection.on('error', err => {
   console.error(`Mongoose connection error: ${err}`);

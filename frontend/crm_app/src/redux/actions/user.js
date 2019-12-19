@@ -32,6 +32,13 @@ const getUsersFailed = () => {
   };
 };
 
+export const getUserTest = () => {
+  console.log("called get user test");
+  return {
+    type: actionTypes.GET_USERS_TEST
+  }
+};
+
 
 export const addUser = (firstname, lastname, role) => {
   return {

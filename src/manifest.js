@@ -2,10 +2,19 @@
 //inert, vision required for hapi-swagger
 module.exports = {
   server: {
-    port: 8000
+    port: 8000,
+    state: {
+      strictHeader: false
+    },
   },
   register: {
     plugins: [
+      {
+        plugin: require('hapi-cors'),
+        options: {
+          origins: ['http://localhost:3000']
+        }
+      },
       {
         plugin: require('hapi-swagger'),
         options: {
