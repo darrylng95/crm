@@ -33,7 +33,6 @@ const getUsersFailed = () => {
 };
 
 export const getUserTest = () => {
-  console.log("called get user test");
   return {
     type: actionTypes.GET_USERS_TEST
   }
