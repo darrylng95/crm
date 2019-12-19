@@ -2,7 +2,10 @@
 //inert, vision required for hapi-swagger
 module.exports = {
   server: {
-    port: 8000
+    port: 8000,
+    state: {
+      strictHeader: false
+    }
   },
   register: {
     plugins: [
