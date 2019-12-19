@@ -17,9 +17,12 @@ class ViewCustomers extends Component {
   }
 
   render () {
+    var usersArr = this.props.users.map((userObj) => {
+    return <h1>{userObj.firstname}</h1>
+    })
     return (
       <div>
-        <h1>{this.props.users}</h1>
+        <h1>{usersArr}</h1>
       </div>
     );
   }
@@ -33,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchCustomers: () => dispatch (actions.getUserTest()),
+    onFetchCustomers: () => dispatch (actions.fetchUsers()),
   };
 };
 
