@@ -1,2 +1,2 @@
 // export actions for use in components
-export {fetchUsers, addUser, getUserTest} from './user';
+export {fetchUsers, addUser} from './user';

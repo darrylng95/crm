@@ -32,20 +32,22 @@ const getUsersFailed = () => {
   };
 };
 
-export const getUserTest = () => {
-  return {
-    type: actionTypes.GET_USERS_TEST
-  }
-};
-
-
 export const addUser = (firstname, lastname, role) => {
-  return {
-    type: actionTypes.ADD_USER,
-    userData: {
+  return dispatch => {
+    const user = {
       firstname: firstname,
       lastname: lastname,
       role: role
-    }
+    };
+    Axios.post('http://localhost:8000/user/person', user, {
+      withCredentials: false
+    })
+      .then(response => {
+        console.log('Add user:', response);
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(getUsersFailed());
+      });
   };
 };
