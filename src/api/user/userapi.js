@@ -53,6 +53,19 @@ exports.register = (server, options) => {
     handler: async (request, h) => {
       try {
         var people = await PersonModel.find().exec();
+        //MongoDB Queries
+        //Where statement
+        // var darryl = await PersonModel.find().where('firstname',['Chee Hao','darryl']).exec();
+        //Count
+        //var people = await PersonModel.find().count().exec();
+        //AND
+        // var darryl = await PersonModel.find()
+        //.and([{'firstname': ['Chee Hao', 'darryl']}, {'lastname': 'Boss'}])
+        //.exec();
+        //Get part of the element
+        //var people = await PersonModel.find({},'firstname').exec();
+
+
         return h.response(people);
       } catch (error) {
         return h.response(error).code(500);
