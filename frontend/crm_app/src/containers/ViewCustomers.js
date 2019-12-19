@@ -14,18 +14,20 @@ import {
 class ViewCustomers extends Component {
   componentDidMount () {
     this.props.onFetchCustomers ();
-    console.log("fetched");
   }
 
   render () {
-    console.log("users: ",this.props.users);
-    return (<h1>test {this.props.users}</h1>);
+    return (
+      <div>
+        <h1>{this.props.users}</h1>
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    customers: state.user.users,
+    users: state.user.users,
   };
 };
 
