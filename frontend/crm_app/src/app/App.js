@@ -10,17 +10,17 @@ function App () {
     <div className="wrapper">
       <div className="content-wrapper">
         <Switch>
-        <Route
+        <Route exact
           path="/viewCustomers"
           name="ViewCustomers"
           component={ViewCustomers}
-        />
-        <Route
+        />  
+        <Route exact
           path="/mainPage"
           name="mainPage"
           component={MainPage}
         />
-          <Route path="/" name="" component={MainPage}/>
+        <Route path="/" name="" component={ViewCustomers}/>
         </Switch>
       </div>
     </div>
