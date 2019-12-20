@@ -13,7 +13,7 @@ import {
   Button
 } from '@material-ui/core';
 // temporory import
-import placeholder from '../../common/icons/placeholder.png';
+import placeholder from '../icons/placeholder.png'
 import Axios from 'axios'
 class ViewCustomerList extends Component {
   
@@ -81,4 +81,4 @@ class ViewCustomerList extends Component {
 }
 
 
-export default connect(null,{deleteEmployee})(ViewCustomerList);
+export default connect(null)(ViewCustomerList);
