@@ -18,6 +18,7 @@ class ViewCustomers extends Component {
   }
 
   render () {
+    console.log("I'm hereeee")
     var usersArr = this.props.users.map (userObj => {
       return <h1>{userObj.firstname}</h1>;
     });

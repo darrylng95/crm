@@ -13,7 +13,6 @@ import {
   Button
 } from '@material-ui/core';
 // temporory import
-import placeholder from '../icons/placeholder.png'
 import Axios from 'axios'
 class ViewCustomerList extends Component {
   
@@ -27,7 +26,7 @@ class ViewCustomerList extends Component {
           <br />
           <Grid container spacing={2} align="center">
             <Grid item xs={6} sm={6}>
-              <img
+              {/* <img
                 src={placeholder}
                 alt=""
                 style={{
@@ -36,7 +35,7 @@ class ViewCustomerList extends Component {
                   maxWidth: '7.5rem',
                   maxHeight: '8.5rem'
                 }}
-              />
+              /> */}
             </Grid>
             <Grid item xs={6} sm={6}>
               <Grid item xs align="center">

@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import React from "react";
+import { Switch, Route } from 'react-router-dom';
+import {  } from 'react-redux';
+import RouterConfig from "../config/RouterConfig";
 
-import './App.css';
+//Components
 import ViewCustomers from '../containers/ViewCustomers';
 import MainPage from '../containers/MainPage';
 
-function App () {
+
+function App() {
+  console.log("I am in App!")
   return (
-    <div className="wrapper">
-      <div className="content-wrapper">
-        <Switch>
-        <Route exact
-          path="/viewCustomers"
-          name="ViewCustomers"
-          component={ViewCustomers}
-        />  
-        <Route exact
-          path="/mainPage"
-          name="mainPage"
-          component={MainPage}
-        />
-        <Route path="/" name="" component={ViewCustomers}/>
-        </Switch>
-      </div>
+    <div>
+      <RouterConfig/>
     </div>
   );
 }
