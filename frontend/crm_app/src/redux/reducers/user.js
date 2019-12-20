@@ -28,7 +28,7 @@ const user = (state = initialState, action) => {
       });
     case actionTypes.ADD_USER_END:
       return Object.assign ({}, state, {
-        users:users
+        users: [...state.users, action.user]
       });
     default:
       return state;

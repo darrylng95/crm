@@ -21,14 +21,10 @@ export const fetchUsers = () => {
       })
       .catch (error => {
         console.log ('Fetch users failed!');
-        dispatch (getUsersFailed ());
+        dispatch ({
+          type: actionTypes.GET_USERS_FAILED,
+        });
       });
-  };
-};
-
-const getUsersFailed = () => {
-  return {
-    type: actionTypes.GET_USERS_FAILED,
   };
 };
 
@@ -46,20 +42,20 @@ export const addUser = (firstname, lastname, role, successCb) => {
       withCredentials: false,
     })
       .then (response => {
+        console.log ('add response', response);
         //display the successful alert
         //call the fetchUsers again
-        var newUsers = getState ().user.users.push (user);
-        console.log (newUsers);
         dispatch ({
           type: actionTypes.ADD_USER_END,
-          users: newUsers,
+          user: response.data,
         });
-        successCb ();
+        console.log(successCb);
+        successCb(); //fetchUsers()
         console.log ('Add user:', response);
       })
       .catch (error => {
         console.log (error);
-        dispatch (getUsersFailed ());
+        dispatch ({type: actionTypes.GET_USERS_FAILED});
       });
   };
 };
