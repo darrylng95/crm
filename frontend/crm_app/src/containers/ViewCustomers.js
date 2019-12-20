@@ -18,19 +18,18 @@ class ViewCustomers extends Component {
   }
 
   render () {
-    console.log("I'm hereeee")
+    console.log ("I'm hereeee");
     var usersArr = this.props.users.map (userObj => {
       return <h1>{userObj.firstname}</h1>;
     });
-    if (this.props.fetchErrorFlag === false) {
-      return (
-        <List disablePadding="true" dense="true" >
+
+    return (
+      <List disablePadding="true" dense="true">
         <ListItem>
-          <ViewCustomerList users = {usersArr} />
+          <ViewCustomerList users={usersArr} />
         </ListItem>
       </List>
-      );
-    }
+    );
   }
 }
 

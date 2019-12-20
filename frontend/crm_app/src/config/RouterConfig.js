@@ -11,8 +11,9 @@ function RouterConfig() {
   console.log("I am in RouterConfig!")
   return (
     <Switch>
-      <Route exact path = "/viewCustomers" component = {ViewCustomers} />
-      <Route exact path = "/mainPage" component = {MainPage}/>
+      <Route exact path = "/ViewCustomers" component = {ViewCustomers} />
+      <Route exact path = "/MainPage" component = {MainPage} />
+
     </Switch>
   );
 }
