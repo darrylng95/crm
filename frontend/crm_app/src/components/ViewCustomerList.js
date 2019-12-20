@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ViewCustomerDetails from './ViewCustomerDetails';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
   Paper,
   Grid,
@@ -10,18 +10,17 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  Button
+  Button,
 } from '@material-ui/core';
 // temporory import
-import Axios from 'axios'
+import Axios from 'axios';
 class ViewCustomerList extends Component {
-  
-
-  render() {
-      const {firstname, lastname, role} = this.props.users;
+  render () {
+    const {firstname, lastname, role} = this.props.users;
+    console.log (this.props.users);
     return (
-      <div style={{ width: '100%', maxWidth: '100%' }}>
-        <br/>
+      <div style={{width: '100%', maxWidth: '100%'}} key={this.props.key}>
+        <br />
         <Paper>
           <br />
           <Grid container spacing={2} align="center">
@@ -55,8 +54,7 @@ class ViewCustomerList extends Component {
 
                     <TableRow>
                       <TableCell>
-                        <Button variant="contained" color="secondary"
-                        >
+                        <Button variant="contained" color="secondary">
                           Delete
                         </Button>
                       </TableCell>
@@ -65,19 +63,21 @@ class ViewCustomerList extends Component {
                 </Table>
               </Grid>
             </Grid>
-            <Grid>
-            </Grid>
+            <Grid />
           </Grid>
-          <br/>
-          <Grid item xs = {12} align = "center">
-              <ViewCustomerDetails  firstname = {firstname} lastname = {lastname} role = {role}/>
+          <br />
+          <Grid item xs={12} align="center">
+            <ViewCustomerDetails
+              firstname={firstname}
+              lastname={lastname}
+              role={role}
+            />
           </Grid>
-          <br/>
+          <br />
         </Paper>
       </div>
     );
   }
 }
 
-
-export default connect(null)(ViewCustomerList);
+export default connect (null) (ViewCustomerList);
