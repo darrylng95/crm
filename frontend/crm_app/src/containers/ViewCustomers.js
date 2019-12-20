@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../redux/actions/index';
+import ViewCustomerList from '../components/ViewCustomerList';
 
 import {
   Box,
@@ -17,26 +18,31 @@ class ViewCustomers extends Component {
   }
 
   render () {
-    var usersArr = this.props.users.map((userObj) => {
-    return <h1>{userObj.firstname}</h1>
-    })
-    return (
-      <div>
-        <h1>{usersArr}</h1>
-      </div>
-    );
+    var usersArr = this.props.users.map (userObj => {
+      return <h1>{userObj.firstname}</h1>;
+    });
+    if (this.props.fetchErrorFlag === false) {
+      return (
+        <List disablePadding="true" dense="true" >
+        <ListItem>
+          <ViewCustomerList users = {usersArr} />
+        </ListItem>
+      </List>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
     users: state.user.users,
+    error: state.user.error,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchCustomers: () => dispatch (actions.fetchUsers()),
+    onFetchCustomers: () => dispatch (actions.fetchUsers ()),
   };
 };
 
