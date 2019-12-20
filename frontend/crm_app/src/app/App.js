@@ -20,7 +20,7 @@ function App () {
           name="mainPage"
           component={MainPage}
         />
-        <Route path="/" name="" component={MainPage}/>
+          <Route path="/" name="" component={MainPage}/>
         </Switch>
       </div>
     </div>
