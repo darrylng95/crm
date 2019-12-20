@@ -6,48 +6,56 @@ import user from '../reducers/user';
 const getUsers = users => {
   return {
     type: actionTypes.GET_USERS, //call reducer to do the action
-    users: users
+    users: users,
   };
 };
 
 export const fetchUsers = () => {
   return dispatch => {
-    Axios.get('http://localhost:8000/user/people', {
-      withCredentials: false
+    Axios.get ('http://localhost:8000/user/people', {
+      withCredentials: false,
     })
-      .then(response => {
-        console.log(response.data);
-        dispatch(getUsers(response.data));
+      .then (response => {
+        console.log (response.data);
+        dispatch (getUsers (response.data));
       })
-      .catch(error => {
-        console.log('Fetch users failed!');
-        dispatch(getUsersFailed());
+      .catch (error => {
+        console.log ('Fetch users failed!');
+        dispatch ({
+          type: actionTypes.GET_USERS_FAILED,
+        });
       });
   };
 };
 
-const getUsersFailed = () => {
-  return {
-    type: actionTypes.GET_USERS_FAILED
-  };
-};
-
-export const addUser = (firstname, lastname, role) => {
+export const addUser = (firstname, lastname, role, successCb) => {
   return dispatch => {
     const user = {
       firstname: firstname,
       lastname: lastname,
-      role: role
+      role: role,
     };
-    Axios.post('http://localhost:8000/user/person', user, {
-      withCredentials: false
+    dispatch ({
+      type: actionTypes.ADD_USER_START,
+    });
+    Axios.post ('http://localhost:8000/user/person', user, {
+      withCredentials: false,
     })
-      .then(response => {
-        console.log('Add user:', response);
+      .then (response => {
+        console.log ('add response', response);
+        //display the successful alert
+        //call the fetchUsers again
+        dispatch ({
+          type: actionTypes.ADD_USER_END,
+          user: response.data,
+        });
+        console.log(successCb);
+        successCb(); //fetchUsers()
+        console.log ('Add user:', response);
       })
-      .catch(error => {
-        console.log(error);
-        dispatch(getUsersFailed());
+      .catch (error => {
+        console.log (error);
+        dispatch ({type: actionTypes.GET_USERS_FAILED});
       });
   };
 };

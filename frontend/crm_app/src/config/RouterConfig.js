@@ -6,6 +6,7 @@ import 'react-redux';
 import ViewCustomers from '../containers/ViewCustomers';
 import MainPage from '../containers/MainPage';
 import MainLayout from '../layout/MainLayout';
+import AddUser from '../containers/AddUser';
 
 function RouterConfig () {
   console.log ('I am in RouterConfig!');
@@ -13,6 +14,7 @@ function RouterConfig () {
     <Switch>
         <Route exact path="/viewCustomers" component={ViewCustomers} />
         <Route exact path="/mainPage" component={MainPage} />
+        <Route exact path = "/AddUser" component = {AddUser} />
         <Route exact path="/" component={ViewCustomers} />
     </Switch>
   );

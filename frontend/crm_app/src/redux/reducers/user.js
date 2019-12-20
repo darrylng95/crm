@@ -6,22 +6,32 @@ import Axios from 'axios';
 
 const initialState = {
   users: [],
-  error: false
+  error: false,
+  loadingState: false,
 };
 
 const user = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_USERS:
-      return Object.assign({}, state, {
+      return Object.assign ({}, state, {
         users: action.users,
-        error: false
-      });    
+        error: false,
+        loadingState: true,
+      });
     case actionTypes.GET_USERS_FAILED:
-      return Object.assign({}, state, {
-        error: true
-      })
+      return Object.assign ({}, state, {
+        error: true,
+      });
+    case actionTypes.ADD_USER_START:
+      return Object.assign ({}, state, {
+        loadingState: true,
+      });
+    case actionTypes.ADD_USER_END:
+      return Object.assign ({}, state, {
+        users: [...state.users, action.user]
+      });
     default:
-       return state;
+      return state;
   }
 };
 
