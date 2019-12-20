@@ -28,7 +28,6 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 
 
 function Copyright() {
-  console.log("I'm in Main Page!")
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -157,6 +156,8 @@ export default function Dashboard() {
           </IconButton>
         </Toolbar>
       </AppBar>
+
+      
       <Drawer
         variant="permanent"
         classes={{
