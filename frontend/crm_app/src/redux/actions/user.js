@@ -48,9 +48,9 @@ export const addUser = (firstname, lastname, role, successCb) => {
         dispatch ({
           type: actionTypes.ADD_USER_END,
           user: response.data,
-        });
+        }); //you adding one data, 
         console.log(successCb);
-        successCb(); //fetchUsers()
+        successCb(); //fetchUsers() -- if there are 4 other person, this thing will
         console.log ('Add user:', response);
       })
       .catch (error => {
