@@ -2,11 +2,42 @@
 
 const Joi = require('joi');
 
+const fs = require('fs');
+
+const mkdirp = require('mkdirp');
+
 const User = require('../../database/models/User');
 
 // Schema
 const PersonModel = User.Person;
 const ContactModel = User.Contact;
+
+//upload function
+const handleFileUpload = (file, params) => {
+  return new Promise((resolve, reject) => {
+    const filename = file.hapi.filename;
+    const data = file._data;
+    var folder = 'src/api/user/upload/' + params.id + '/' + params.for;
+    var filepath = folder + '/' + filename;
+    mkdirp(folder, function(err) {
+      if (err) console.log(err);
+      else console.log('Created:', folder);
+    });
+    setTimeout(() => {
+      fs.writeFile(folder + '/' + filename, data, err => {
+        if (err) {
+          console.log('error:', err);
+          reject(err);
+        }
+        resolve({
+          message: 'Upload Successfully!',
+          status: '200',
+          filepath: filepath
+        });
+      });
+    }, 1000);
+  });
+};
 
 // Exporting user api routes
 exports.register = (server, options) => {
@@ -51,7 +82,8 @@ exports.register = (server, options) => {
     method: 'GET',
     path: '/people',
     options: {
-      cors:true
+      tags: ['api'],
+      cors: true
     },
     handler: async (request, h) => {
       try {
@@ -68,7 +100,6 @@ exports.register = (server, options) => {
         //Get part of the element
         //var people = await PersonModel.find({},'firstname').exec();
 
-
         return h.response(people);
       } catch (error) {
         return h.response(error).code(500);
@@ -81,6 +112,7 @@ exports.register = (server, options) => {
     method: 'POST',
     path: '/contact',
     options: {
+      tags: ['api'],
       validate: {
         payload: {
           userid: Joi.required(),
@@ -102,6 +134,44 @@ exports.register = (server, options) => {
         return h.response(result);
       } catch (error) {
         return h.response(error).code(500);
+      }
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/upload/{id}/{for}',
+    options: {
+      tags: ['api'],
+      payload: {
+        output: 'stream'
+      }
+    },
+    handler: async (request, h) => {
+      const { payload } = request;
+      const response = await handleFileUpload(payload.file, request.params);
+      console.log(response.status);
+      if (response.status === '200') {
+        console.log('success', response.filepath);
+        var filepath = response.filepath;
+        try {
+          await PersonModel.findByIdAndUpdate(request.params.id, {
+            profilepic: filepath
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return response;
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/upload/{file*}',
+    handler: {
+      directory: {
+        path: 'src/api/user/upload/'
       }
     }
   });
