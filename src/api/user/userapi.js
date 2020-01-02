@@ -1,8 +1,8 @@
 //const Mongoose = require('mongoose');
 
-const Joi = require('joi');
+const Joi = require("joi");
 
-const User = require('../../database/models/User');
+const User = require("../../database/models/User");
 
 // Schema
 const PersonModel = User.Person;
@@ -12,16 +12,19 @@ const ContactModel = User.Contact;
 exports.register = (server, options) => {
   //route 1
   server.route({
-    method: 'POST',
-    path: '/person',
+    method: "POST",
+    path: "/person",
     options: {
-      tags: ['api'],
+      auth: false,
+      tags: ["api"],
       validate: {
         payload: {
           firstname: Joi.string()
             .min(3)
             .required(),
           lastname: Joi.string().required(),
+          username: Joi.string().required(),
+          password: Joi.string().required(),
           role: Joi.string().required()
         },
         failAction: (request, h, error) => {
@@ -48,10 +51,11 @@ exports.register = (server, options) => {
 
   //route 2
   server.route({
-    method: 'GET',
-    path: '/people',
+    method: "GET",
+    path: "/people",
     options: {
-      cors:true
+      auth: false,
+      cors: true
     },
     handler: async (request, h) => {
       try {
@@ -68,7 +72,6 @@ exports.register = (server, options) => {
         //Get part of the element
         //var people = await PersonModel.find({},'firstname').exec();
 
-
         return h.response(people);
       } catch (error) {
         return h.response(error).code(500);
@@ -78,9 +81,10 @@ exports.register = (server, options) => {
 
   //route 3
   server.route({
-    method: 'POST',
-    path: '/contact',
+    method: "POST",
+    path: "/contact",
     options: {
+      auth: false,
       validate: {
         payload: {
           userid: Joi.required(),
@@ -108,5 +112,5 @@ exports.register = (server, options) => {
 };
 
 exports.pkg = {
-  name: 'userapis'
+  name: "userapis"
 };

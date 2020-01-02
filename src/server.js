@@ -2,11 +2,8 @@
 'use strict';
 
 const Glue = require('glue');
-
 const manifest = require('./manifest');
-
 const Mongoose = require('mongoose');
-
 const keys = require('./config/default');
 //require('./database/models/User');
 
@@ -28,7 +25,7 @@ module.exports.compose = () => {
 const startServer = async function() {
   try {
     const server = await module.exports.compose();
-    await server.start();
+    await server.start(); 
     console.log(`server started on port ${manifest.server.port}!`);
     server.log(['success'], {
       message: `server started on port ${manifest.server.port}!`

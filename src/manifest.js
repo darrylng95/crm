@@ -36,11 +36,17 @@ module.exports = {
         plugin: 'vision'
       },
       {
+        plugin: require('./api/auth'),
+        routes: {
+          prefix: '/auth'
+        }
+      },
+      {
         plugin: require('./api/user/userapi'),
         routes: {
           prefix: '/user'
         }
-      }
+      },
     ]
   }
 };
